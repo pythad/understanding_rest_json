@@ -41,6 +41,6 @@ while True:
 
 
 data = json.loads(resp.text, object_pairs_hook=OrderedDict)
-print()
+print('')
 for key, value in data.items():
     print("{}: {}".format(key, value))
