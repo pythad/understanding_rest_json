@@ -9,6 +9,11 @@ import requests
 import json
 import sys
 
+try:
+    input = raw_input  # Binds raw_input to input in Python 2
+except NameError:
+    pass
+
 prompt = """
 The script fetches data from http://jsonplaceholder.typicode.com/posts/<user_id>
 input user_id, it has to be an integer (0 < user_id <= 100): 
@@ -25,14 +30,14 @@ while True:
     except ValueError:
         print('user_id has to be a number')
     except requests.exceptions.RequestException:
-        print('It looks like you have problems with your network. Check it and try again later')
+        print(
+            'It looks like you have problems with your network. Check it and try again later')
         sys.exit(1)
     else:
         if 0 < user_id <= 100:
             break
         else:
             print('Please, provide correct data (0 < user_id <= 100)')
-
 
 
 data = json.loads(resp.text, object_pairs_hook=OrderedDict)
